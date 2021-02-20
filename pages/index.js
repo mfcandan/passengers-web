@@ -1,21 +1,38 @@
+import React, { useState, useEffect,  Component } from 'react';
+import Link from 'next/link'
+import Head from 'next/head'
+import axios from 'axios';
+
+
+import styles from '../styles/Home.module.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button } from 'reactstrap';
-import Head from 'next/head'
-import styles from '../styles/Home.module.css'
-import Link from 'next/link'
 
-export const getStaticProps = async () => {
+const Home = () => {
 
-  const res = await fetch('https://jsonplaceholder.typicode.com/users');
-  const data = await res.json();
+  const [passengers, setPassengers] = useState([]);
+  const [limit, setLimit] =  useState(2, limit => {getUsers()});
 
-  return {
-      props: { passengers: data }
+  useEffect(() => {
+    getUsers();
+    return () => {
+      console.log("cleanup use effect")
+    }
+  }, [limit]);
+
+  const getUsers = async () => {
+    try {
+      let data = await axios({
+        method: 'get',
+        url: 'https://jsonplaceholder.typicode.com/users',
+        params: { _limit: limit}
+      }).then(({data}) => data);
+      setPassengers(data);  
+    } catch (error) {
+      console.log(error);
+    }    
   }
 
-}
-
-const Home = ({ passengers }) => {
   return (
     <div className={styles.container}>
       <Head>
@@ -36,7 +53,8 @@ const Home = ({ passengers }) => {
             </a>
           </Link>
         ))}
-        <Button color="primary">Show More</Button>
+        
+        <Button color="primary" onClick={() => setLimit(limit+2)}>Show More</Button>
 
       </main>
 
