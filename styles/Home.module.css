@@ -31,9 +31,25 @@
   margin-left: 3px;
 }
 
+.single {
+  padding: 2px 16px;
+  background: #fff;
+  display: block;
+  margin: 20px 10px;
+  border-left: 8px solid #fff;
+  width: 40%;
+}
+.single:hover {
+  border-left: 8px solid #4979ff;
+}
+
 @media (max-width: 600px) {
   .grid {
     width: 100%;
     flex-direction: column;
+  }
+
+  .single{
+    width: 80%;
   }
 }
