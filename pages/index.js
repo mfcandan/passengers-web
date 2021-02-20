@@ -7,26 +7,41 @@ import styles from '../styles/Home.module.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button } from 'reactstrap';
 
-const Home = () => {
 
+const api = axios.create({
+  baseURL: 'https://jsonplaceholder.typicode.com/users',
+  headers: {
+    'X-auth-key': "token123"
+  }
+})
+
+export const getStaticProps = async () => {
+  const data = await api.get('/', {
+    params: {
+      _limit: 5,
+      _start: 0
+    }
+  }).then(({ data }) => data);
+
+  return {
+      props: { pasData: data }
+  }
+}
+
+const Home = ({ pasData }) => {
   const [passengers, setPassengers] = useState([]);
-  const [limit, setLimit] =  useState(2);
 
   useEffect(() => {
     getUsers();
     return () => {
-      console.log("cleanup use effect")
+      console.log("cleanup useeffect")
     }
-  }, [limit]);
+  }, []);
 
   const getUsers = async () => {
     try {
-      let data = await axios({
-        method: 'get',
-        url: 'https://jsonplaceholder.typicode.com/users',
-        params: { _limit: limit}
-      }).then(({data}) => data);
-      setPassengers(data);  
+      let data = pasData;
+      setPassengers(data);
     } catch (error) {
       console.log(error);
     }    
@@ -38,7 +53,6 @@ const Home = () => {
         <title>PassengerApp | Home</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
       <main className={styles.main}>
         <h1 className={styles.title}>Our Passengers</h1><hr/>
 
