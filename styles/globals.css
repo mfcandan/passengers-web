@@ -17,6 +17,6 @@ a {
 
 hr{
   min-width: 50%;
-  margin-top: 0.5em;
-  border: 1px solid rgb(204, 204, 204);
+  margin-top: 1.5%;
+  border-color: rgb(204, 204, 204);
 }

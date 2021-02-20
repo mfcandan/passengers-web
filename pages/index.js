@@ -11,7 +11,7 @@ export default function Home() {
 
       <main className={styles.main}>
         <h1 className={styles.title}>
-          Passenger List
+          Our Passengers
         </h1>
         <hr/>
 
