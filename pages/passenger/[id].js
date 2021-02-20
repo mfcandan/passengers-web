@@ -49,7 +49,6 @@ const Details = ({ passenger }) => {
             </Head>
             <main className={styles.main}>
                 <h1 className={styles.title}>Passenger Details:</h1><hr/>
-
                 <div className={styles.passengerDatas}>
                     <div className={styles.inlineItem}>
                         <h5 className={styles.passengerName}> {passenger.name} </h5>
