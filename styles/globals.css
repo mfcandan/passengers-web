@@ -14,3 +14,9 @@ a {
 * {
   box-sizing: border-box;
 }
+
+hr{
+  min-width: 50%;
+  margin-top: 0.5em;
+  border: 1px solid rgb(204, 204, 204);
+}
