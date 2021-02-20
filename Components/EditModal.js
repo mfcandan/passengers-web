@@ -19,7 +19,7 @@ const ModalExample = (props) => {
       <Button size="sm" color="info" onClick={toggle}>{buttonLabel}</Button>
 
       <Modal isOpen={modal} toggle={toggle} className={className}>
-        <ModalHeader toggle={toggle}>Change Passenger Name:</ModalHeader>
+        <ModalHeader toggle={toggle}>Change the Passenger Name:</ModalHeader>
         <Form onSubmit={() => console.log("Submitted")}>
             <ModalBody>
                 <FormGroup>

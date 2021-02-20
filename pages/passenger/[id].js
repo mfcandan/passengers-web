@@ -50,7 +50,7 @@ const Details = ({ passenger }) => {
                 <hr/>
                 <div className={styles.passengerDatas}>
                     <div className={styles.inlineItem}>
-                        <h4> {passenger.name} </h4>{" "}
+                        <h5 className={styles.passengerName}> {passenger.name} </h5>
                         <EditModal currentName={passenger.name} buttonLabel={editIcon} />
                     </div>
                     <p> {passenger.email} </p>
