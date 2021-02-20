@@ -1,4 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { Button } from 'reactstrap';
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import Link from 'next/link'
@@ -35,7 +36,7 @@ const Home = ({ passengers }) => {
             </a>
           </Link>
         ))}
-
+        <Button color="primary">Show More</Button>
 
       </main>
 
