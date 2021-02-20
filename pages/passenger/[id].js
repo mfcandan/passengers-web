@@ -4,6 +4,7 @@ import { Button } from 'reactstrap';
 import Head from 'next/head'
 import styles from '../../styles/Home.module.css'
 import Link from 'next/link'
+import EditModal from '../../Components/EditModal.js'
 
 
 
@@ -44,14 +45,16 @@ const Details = ({ passenger }) => {
             <main className={styles.main}>
                 <h1 className={styles.title}>Passenger Details:</h1>
                 <hr/>
-                <div>
+                <div className={styles.passengerDatas}>
                     <br/><br/><br/>
-                    <h2> {passenger.name} </h2>
+                    <div className={styles.inlineItem}>
+                        <h4> {passenger.name} </h4>{" "}
+                        <EditModal currentName={passenger.name} buttonLabel="Edit" />
+                    </div>
                     <p> {passenger.email} </p>
                     <p> {passenger.phone} </p>
                     <p> {passenger.website} </p>
                     <p> {passenger.address.city} </p>
-                    <Button color="danger">Danger!</Button>
                 </div>
             </main>
             <footer>
