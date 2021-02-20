@@ -5,7 +5,7 @@
 }
 
 .main {
-  padding: 3rem 0;
+  padding: 3rem 0 !important;
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -32,15 +32,15 @@
 }
 
 .single {
-  padding: 2px 16px;
+  padding: 1em 1em !important; 
   background: #fff;
   display: block;
-  margin: 20px 10px;
+  margin: 20px 10px !important;
   border-left: 8px solid #fff;
   width: 40%;
 }
 .single:hover {
-  border-left: 8px solid #4979ff;
+  border-left: 8px solid #4979ff !important; 
 }
 
 @media (max-width: 600px) {

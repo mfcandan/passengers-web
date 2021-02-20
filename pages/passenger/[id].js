@@ -1,6 +1,11 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
+import React from 'react';
+import { Button } from 'reactstrap';
 import Head from 'next/head'
 import styles from '../../styles/Home.module.css'
 import Link from 'next/link'
+
+
 
 export const getStaticPaths = async () => {
     const res = await fetch('https://jsonplaceholder.typicode.com/users');
@@ -46,6 +51,7 @@ const Details = ({ passenger }) => {
                     <p> {passenger.phone} </p>
                     <p> {passenger.website} </p>
                     <p> {passenger.address.city} </p>
+                    <Button color="danger">Danger!</Button>
                 </div>
             </main>
             <footer>
