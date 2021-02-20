@@ -3,7 +3,6 @@ import Link from 'next/link'
 import Head from 'next/head'
 import axios from 'axios';
 
-
 import styles from '../styles/Home.module.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button } from 'reactstrap';
@@ -11,7 +10,7 @@ import { Button } from 'reactstrap';
 const Home = () => {
 
   const [passengers, setPassengers] = useState([]);
-  const [limit, setLimit] =  useState(2, limit => {getUsers()});
+  const [limit, setLimit] =  useState(2);
 
   useEffect(() => {
     getUsers();
@@ -41,10 +40,7 @@ const Home = () => {
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>
-          <a>Our Passengers</a> 
-        </h1>
-        <hr/>
+        <h1 className={styles.title}>Our Passengers</h1><hr/>
 
         {passengers.map(passenger => (
           <Link href={ '/passenger/' + passenger.id } key={ passenger.id }>
@@ -52,12 +48,10 @@ const Home = () => {
               <h3>{ passenger.name }</h3>
             </a>
           </Link>
-        ))}
-        
+        ))} 
         <Button color="primary" onClick={() => setLimit(limit+2)}>Show More</Button>
 
       </main>
-
     </div>
   );
 }
