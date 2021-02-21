@@ -11,17 +11,14 @@ import ErrorModal from '../../Components/ErrorModal.js'
 
 const editIcon = <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-pencil" viewBox="0 0 16 16"><path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5L13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175l-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/></svg>;
 
-const api = axios.create({
-    baseURL: 'https://jsonplaceholder.typicode.com/users',
-})
-
 export const getStaticPaths = async () => {
-    const res = await fetch('https://jsonplaceholder.typicode.com/users');
-    const data = await res.json();
-
+    const res = await axios.get(`https://api.instantwebtools.net/v1/passenger`);   
+    const data = await res.data.data;
+    console.log(data);
     const paths = data.map(passenger => {
+        console.log("hello");
         return{
-            params: { id: passenger.id.toString() }
+            params: { id: passenger._id.toString() }
         }
     })
 
@@ -33,14 +30,15 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps = async (context) => {
     const id = context.params.id;
-    const data = await api.get('/'+ id).then(({ data }) => data);
-
+    const data = await axios.get('https://api.instantwebtools.net/v1/passenger/'+ id).then(({ data }) => data);
+    console.log(id)
     return {
         props: { passenger: data }
     }
 }
 
 const Details = ({ passenger }) => {
+    console.log(passenger);
     return ( 
         <div>
             <Head>
@@ -54,10 +52,8 @@ const Details = ({ passenger }) => {
                         <h5 className={styles.passengerName}> {passenger.name} </h5>
                         <EditModal currentName={passenger.name} buttonLabel={editIcon} />
                     </div>
-                    <p> {passenger.email} </p>
-                    <p> {passenger.phone} </p>
-                    <p> {passenger.website} </p>
-                    <p> {passenger.address.city} </p>
+                    <br/>
+                    <p>Total Trip Counts: {passenger.trips} </p>
                     <ErrorModal buttonLabel="Error" />
                     <Link href={'/'}>
                         <a className={styles.goback}>

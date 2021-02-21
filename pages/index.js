@@ -18,7 +18,7 @@ const Home = () => {
   }, []);
 
   const getStaticProps = async () => {
-    const res = await axios.get('https://api.instantwebtools.net/v1/passenger?page=0&size=10');
+    const res = await axios.get(`https://api.instantwebtools.net/v1/passenger?page=0&size=10`);
     setPassengers(res.data.data);
   }
 
