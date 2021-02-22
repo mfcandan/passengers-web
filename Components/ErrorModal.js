@@ -1,24 +1,36 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
 const ErrorModal = (props) => {
   const {
     buttonLabel,
-    className
+    className,
+    show,
+    errorMessage,
   } = props;
 
+  useEffect(() => {
+    showMessage();
+    return () => {
+      console.log("messsage clean")
+    }
+  }, [show]);
+
   const [modal, setModal] = useState(false);
-  const [errorText, setErrorText] = useState('This name using from another user. Please try a different name');
 
   const toggle = () => setModal(!modal);
 
+  const showMessage = () => {
+    setModal(show);
+  }
+
   return (
     <div>
-      <Button color="danger" onClick={toggle}>{buttonLabel}</Button>
+      <Button color="white" onClick={toggle}>{buttonLabel}</Button>
       <Modal isOpen={modal} toggle={toggle} className={className}>
         <ModalHeader toggle={toggle}>Error!</ModalHeader>
         <ModalBody>
-          {errorText}
+          {errorMessage}
         </ModalBody>
         <ModalFooter>
           <Button color="secondary" onClick={toggle}>Okay, Understand</Button>

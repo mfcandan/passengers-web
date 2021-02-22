@@ -89,3 +89,6 @@
   }
 }
 
+.hideIt{
+  display: none !important;
+}
